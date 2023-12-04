@@ -122,8 +122,75 @@ namespace Loginov {
 		11.f,17.f,10.f,17.f
 
 	};
+	float newlines[] = {
+		0.5f,3.f,1.f,4.5f, // от левой щеки вверх до уха
+ 1.f,4.5f,0.5f,6.f, // левое ухо слева снизу вверх
+ 0.5f,6.f,0.5f, 7.5f, // левое ухо слева
+ 0.5f, 7.5f,1.f,8.f, // левое ухо верх слева
+ 1.f,8.f,1.5f,8.f, // левое ухо верх середина
+ 1.5f,8.f,2.f,7.5f, // левое ухо верх справа
+  2.f,7.5f,1.5f, 6.f, // левое ухо справа сверху вниз
+ 1.5f, 6.f,1.5f,4.5f, // левое ухо справа до макушки
+ 1.5f,4.5f,3.f,4.5f, // макушка
+ 3.f,4.5f,3.f,6.f, // правое ухо слева снизу вверх
+ 3.f,6.f,2.5f,7.5f, // правое ухо слева
+ 2.5f,7.5f,3.f,8.f, // правое ухо верх слева
+ 3.f,8.f,3.5f,8.f, // правое ухо верх середина
+ 3.5f,8.f,4.f,7.5f, // правое ухо верх справа
+ 4.f,7.5f,4.f,6.f, // правое ухо сверху вниз
+ 4.f,6.f,3.5f,4.5f, // правое ухо справа
+ 3.5f,4.5f,4.f,3.f, // от правого уха вниз до щеки
+ 4.f,3.f,3.5f,1.5f, // правая скула
+ 3.5f,1.5f,2.5f,1.f, // подбородок справа
+ 2.5f,1.f,2.f,1.f, // подбородок снизу
+ 2.f,1.f,1.f,1.5f, // подбородок слева
+ 1.f,1.5f,0.5f,3.f, // левая скула
+ // туловище
+ 4.f,3.f,5.5f,3.5f, // спина от головы вправо
+ 5.5f,3.5f,7.f,3.5f, // спина верх
+ 7.f,3.5f,7.5f,2.5f, // спина сверху до хвоста
+ 7.5f,2.5f,8.f,2.5f, // хвост сверху
+ 8.f,2.5f,8.f,2.f, // хвост справа
+ 8.f,2.f,7.5f,2.f, // хвост низ справа налево
+ 7.5f,2.f,7.5f,0.5f, // задняя нога справа сверху вниз
+ 7.5f,0.5f,6.5f,0.5f, // задняя нога низ
+ 6.5f,0.5f,6.5f,1.f, // задняя нога слева
+ 6.5f,1.f,6.f,1.f, // между задних ног
+ 6.f,1.f,6.f,0.5f, // левая задняя нога справа
+ 6.f,0.5f,5.f,0.5f, // левая задняя нога низ
+ 5.f,0.5f,5.f,1.f, // левая задняя нога слева
+ 5.f,1.f,4.f,1.f, // между задними и передними ногами
+ 4.f,1.f,4.f,0.5f, // правая передняя нога справа
+ 4.f,0.5f,3.f,0.5f, // правая передняя нога низ
+ 3.f,0.5f,3.f,1.f, // правая передняя нога слева
+ 3.f,1.f,2.5f,1.f, // между передних ног
+ 2.5f,1.f,2.5f,0.5f, // передняя нога справа
+ 2.5f,0.5f,1.5f,0.5f, // передняя нога низ
+ 1.5f,0.5f,1.5f,1.25f, // передняя нога слева
+ // левый глаз
+ 1.5f,3.5f,1.5f,3.f, // левый глаз слева сверху вниз
+ 1.5f,3.f,2.f,3.f, // левый глаз низ
+ 2.f, 3.f,2.f,3.5f, // левый глаз справа
+ 2.f,3.5f,1.5f,3.5f, // левый глаз верх
+ // правый глаз
+ 2.5f,3.5f,2.5f,3.f, // правый глаз слева
+ 2.5f,3.f,3.f, 3.f, // правый глаз снизу
+ 3.f,3.f,3.f,3.5f, // правый глаз справа
+ 3.f,3.5f,2.5f,3.5f, // правый глаз сверху
+ // ушные раковины
+ 1.f,5.5f,1.f,7.f, // левая ушная раковина
+ 3.5f,5.5f,3.5f,7.f, // правая ушная раковина
+ // нос
+ 2.f,2.5f,2.5f,2.5f, // нос сверху
+ 2.5f,2.5f,2.25f,2.f, // нос справа
+ 2.25f,2.f,2.f,2.5f // нос слева
 
-	unsigned int arrayLength = sizeof(lines) / sizeof(float);
+	};
+	unsigned int arrayLength = sizeof(lines) / sizeof(float); // длина массива
+	unsigned int newArrayLength = sizeof(newlines) / sizeof(float);
+	 float Vx = 25.f; // размер рисунка по горизонтали
+	 float Vy = 25.f; // размер рисунка по вертикали
+	 float aspectFig = Vx / Vy; // соотношение сторон рисунка
 
 	/// <summary>
 	/// Сводка для MyForm
@@ -176,37 +243,74 @@ namespace Loginov {
 			this->DoubleBuffered = true;
 			this->Name = L"MyForm";
 			this->Text = L"MyForm";
+			this->Load += gcnew System::EventHandler(this, &MyForm::MyForm_Load);
 			this->Paint += gcnew System::Windows::Forms::PaintEventHandler(this, &MyForm::MyForm_Paint);
+			this->KeyDown += gcnew System::Windows::Forms::KeyEventHandler(this, &MyForm::MyForm_KeyDown);
 			this->Resize += gcnew System::EventHandler(this, &MyForm::MyForm_Resize);
 			this->ResumeLayout(false);
 
 		}
 #pragma endregion
+		private: bool keepAspectRatio;
+		private: bool changePicture;
 
-	private: System::Void MyForm_Paint(System::Object^  sender, System::Windows::Forms::PaintEventArgs^  e) {
+	private: System::Void MyForm_Paint(System::Object^ sender, System::Windows::Forms::PaintEventArgs^ e) {
 		Graphics^ g = e->Graphics;
-		g->Clear(Color::Aquamarine);
-		Pen^ redPen = gcnew Pen(Color::Red);
-		redPen->Width = 6;
-		g->DrawLine(redPen, 0, 0,this->ClientRectangle.Width,this->ClientRectangle.Height);
-		Pen^ bluePen = gcnew Pen(Color::Blue, 10);
-		g->DrawLine(bluePen, 90, 50, ClientRectangle.Width, 80);
-		SolidBrush^ drawBrush = gcnew SolidBrush(Color::Black);
-		System::Drawing::Font^ drawFont = gcnew System::Drawing::Font("Arial", 10);
-		g->DrawString("Надпись на форме", drawFont, drawBrush, 40, 100);
-		Pen^ greenPen = gcnew Pen(Color::Green, 5);
-		g->DrawLine(greenPen, 0, ClientRectangle.Height / 3, ClientRectangle.Width * 2 / 3, 0);
-		g->DrawLine(greenPen, ClientRectangle.Width * 2 / 3, 0,ClientRectangle.Width,ClientRectangle.Height*2/3);
-		g->DrawLine(greenPen, ClientRectangle.Width, ClientRectangle.Height * 2 / 3,ClientRectangle.Width/3,ClientRectangle.Height);
-		g->DrawLine(greenPen, ClientRectangle.Width / 3, ClientRectangle.Height, 0, ClientRectangle.Height / 3);
+		 g->Clear(Color::Aquamarine);
+		
+			 Pen^ blackPen = gcnew Pen(Color::Black, 2);
+		
+			 float Wx = ClientRectangle.Width; // размер окна по горизонтали
+	 float Wy = ClientRectangle.Height; // размер окна по вертикали
+		
+			 float aspectForm = Wx / Wy; // соотношение сторон окна рисования
+		 float Sx, Sy;
+		 if (keepAspectRatio) {
+			 // коэффициенты увеличения при сохранении исходного соотношения сторон
+				 Sx = Sy = aspectFig < aspectForm ? Wy / Vy : Wx / Vx;
+			
+		}
+		 else {
+			 Sx = Wx / Vx; // коэффициент увеличения по оси Ox
+			 Sy = Wy / Vy; // коэффициент увеличения по оси Oy
+			
+		}
+		 float Ty = Sy * Vy; // смещение в положительную сторону по оси Oy после смены знака
 
+		 if (changePicture)
+		 {
+			 for (int i = 0; i < arrayLength; i += 4) {
+				 g->DrawLine(blackPen, Sx * lines[i], Ty - Sy * lines[i + 1], Sx * lines[i + 2], Ty - Sy * lines[i + 3]);
 
+			 }
+		 }
+		 else {
+			 for (int i = 0; i < newArrayLength; i += 4) {
+				 g->DrawLine(blackPen, Sx * newlines[i], Ty - Sy * newlines[i + 1], Sx * newlines[i + 2], Ty - Sy * newlines[i + 3]);
 
-
-
+			 }
+		 }
+		
 	}
 	private: System::Void MyForm_Resize(System::Object^  sender, System::EventArgs^  e) {
 		Refresh();
 	}
-	};
+	private: System::Void MyForm_Load(System::Object^  sender, System::EventArgs^  e) {
+		keepAspectRatio = true;
+	}
+	private: System::Void MyForm_KeyDown(System::Object^  sender, System::Windows::Forms::KeyEventArgs^  e) {
+		
+		switch (e->KeyCode) {
+		case Keys::M:
+			keepAspectRatio = !keepAspectRatio;
+			break;
+		case Keys::N:
+			changePicture = !changePicture;
+		default:
+			break;
+
+		}
+		Refresh();
+	}
+};
 }
