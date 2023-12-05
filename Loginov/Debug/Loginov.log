@@ -1,7 +1,9 @@
 ﻿  MyForm.cpp
-c:\users\артём\source\repos\loginov\loginov\myform.h(263): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
-c:\users\артём\source\repos\loginov\loginov\myform.h(264): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
-c:\users\артём\source\repos\loginov\loginov\myform.h(282): warning C4018: <: несоответствие типов со знаком и без знака
-c:\users\артём\source\repos\loginov\loginov\myform.h(288): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\артём\source\repos\loginov\loginov\myform.h(108): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\артём\source\repos\loginov\loginov\myform.h(110): warning C4244: аргумент: преобразование "float" в "int", возможна потеря данных
+c:\users\артём\source\repos\loginov\loginov\myform.h(113): warning C4018: <: несоответствие типов со знаком и без знака
+c:\users\артём\source\repos\loginov\loginov\myform.h(273): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
+c:\users\артём\source\repos\loginov\loginov\myform.h(274): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
+c:\users\артём\source\repos\loginov\loginov\matrix.h(76): warning C4172: возвращение адреса локальной или временной переменной
   MyForm.obj : обнаружен модуль MSIL; для MSIL последовательная компоновка отключена; выполняется полная компоновка
   Loginov.vcxproj -> C:\Users\Артём\source\repos\Loginov\Debug\Loginov.exe
